@@ -1,0 +1,69 @@
+root:scripts# ./find_certs_script.sh
+
+🔍 Searching for your SSL certificate files...
+
+Enter your domain (or press Enter for example.com): <URL>
+🌐 Looking for certificates for: <URL>
+
+🔍 Standard acme.sh locations:
+================================
+❌ Private Key (acme.sh storage) - NOT FOUND
+   📁 Expected path: /root/.acme.sh/<URL>/<URL>.key
+
+❌ Certificate (acme.sh storage) - NOT FOUND
+   📁 Expected path: /root/.acme.sh/<URL>/<URL>.cer
+
+❌ Full Chain (acme.sh storage) - NOT FOUND
+   📁 Expected path: /root/.acme.sh/<URL>/fullchain.cer
+
+❌ CA Certificate (acme.sh storage) - NOT FOUND
+   📁 Expected path: /root/.acme.sh/<URL>/ca.cer
+
+🔍 Script-installed locations:
+===============================
+❌ Private Key (for web server) - NOT FOUND
+   📁 Expected path: /etc/ssl/certs/<URL>/key.pem
+
+❌ Full Chain (for web server) - NOT FOUND
+   📁 Expected path: /etc/ssl/certs/<URL>/fullchain.pem
+
+❌ Certificate (for Apache) - NOT FOUND
+   📁 Expected path: /etc/ssl/certs/<URL>/cert.pem
+
+🔍 Alternative common locations:
+================================
+❌ Private Key (alternative) - NOT FOUND
+   📁 Expected path: /etc/ssl/private/<URL>.key
+
+❌ Certificate (alternative) - NOT FOUND
+   📁 Expected path: /etc/ssl/certs/<URL>.crt
+
+❌ Certificate (alternative) - NOT FOUND
+   📁 Expected path: /etc/ssl/certs/<URL>.pem
+
+🔍 Search results:
+==================
+📂 All files containing '<URL>':
+/root/.acme.sh/<URL>_ecc/<URL>.csr
+/root/.acme.sh/<URL>_ecc/<URL>.csr.conf
+/root/.acme.sh/<URL>_ecc/<URL>.conf
+/root/.acme.sh/<URL>_ecc/<URL>.key
+
+📂 All .pem files in /etc/ssl:
+/etc/ssl/certs/ssl-cert-snakeoil.pem
+
+🔧 What you need for your web server:
+=====================================
+For NGINX, you typically need:
+   ssl_certificate      /path/to/fullchain.pem;
+   ssl_certificate_key  /path/to/private.key;
+
+For Apache, you typically need:
+   SSLCertificateFile    /path/to/cert.pem
+   SSLCertificateKeyFile /path/to/private.key
+   SSLCertificateChainFile /path/to/fullchain.pem
+
+🎯 Next steps:
+1. Identify which files exist from the list above
+2. Use the paths in your web server configuration
+3. Test with: nginx -t (for nginx) or apache2ctl configtest (for apache)

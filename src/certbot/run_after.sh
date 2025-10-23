@@ -1,5 +1,6 @@
 #!/bin/bash
 
+# Run Certbot to obtain an SSL certificate using Apache
 sudo certbot run --apache \
   --agree-tos \
   --email you@example.com \
@@ -8,5 +9,5 @@ sudo certbot run --apache \
   --eab-hmac-key <your-hmac-key> \
   -d yourserver.example.com
 
-# Remotely:
+# Remotely: check the expiration date of the certificate
 curl -vI https://yourserver.example.com 2>&1 | grep -i "expire date"

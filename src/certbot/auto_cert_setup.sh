@@ -48,8 +48,8 @@ sudo certbot certonly \
     --agree-tos \
     --email "$EMAIL" \
     --server https://acme.sectigo.com/v2/InCommonRSAOV \
-   --eab-kid "$EAB_KID" \
-   --eab-hmac-key "$EAB_HMAC" \
+    --eab-kid "$EAB_KID" \
+    --eab-hmac-key "$EAB_HMAC" \
     --domain "$DOMAIN" \
     --cert-name "$DOMAIN" \
     --deploy-hook "systemctl restart $WEB_SERVICE"

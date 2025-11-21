@@ -27,19 +27,19 @@ read -rp "🔑 Enter your EAB HMAC Key: " EAB_HMAC
 
 echo "⚙️ Installing dependencies..."
 if [ "$OS" = "redhat" ]; then
-    sudo yum install -y snapd
-    sudo systemctl enable --now snapd.socket
-    sudo ln -s /var/lib/snapd/snap /snap 2>/dev/null || true
+    # Install EPEL repository for Certbot
+    sudo yum install -y epel-release
+    sudo yum install -y certbot python3-certbot-apache
 else
     sudo apt update -y
     sudo apt install -y snapd
-fi
 
-echo "🔩 Installing Certbot via Snap..."
-sudo snap install core
-sudo snap refresh core
-sudo snap install --classic certbot
-sudo ln -sf /snap/bin/certbot /usr/bin/certbot
+    echo "🔩 Installing Certbot via Snap..."
+    sudo snap install core
+    sudo snap refresh core
+    sudo snap install --classic certbot
+    sudo ln -sf /snap/bin/certbot /usr/bin/certbot
+fi
 
 echo "📜 Requesting certificate for $DOMAIN..."
 sudo certbot certonly \

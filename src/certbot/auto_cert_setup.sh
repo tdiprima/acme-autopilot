@@ -62,6 +62,7 @@ if systemctl list-timers | grep -q certbot; then
     echo "✅ Systemd timer already active."
 else
     echo "⚡ Creating daily cron job for renewal..."
+    # Take whatever root already has scheduled, add this new certbot job, and save it back.
     (sudo crontab -l 2>/dev/null; echo "0 3 * * * certbot renew --quiet --deploy-hook 'systemctl restart $WEB_SERVICE'") | sudo crontab -
 fi
 

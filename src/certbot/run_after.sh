@@ -1,4 +1,7 @@
 #!/bin/bash
+# Certbot doesn't care whether the package is called apache2 (Debian/Ubuntu) or httpd (RHEL/CentOS/Alma/Rocky).
+# The --apache flag just tells Certbot to use the Apache plugin.
+# No --httpd flag exists. It's always --apache.
 
 # Run Certbot to obtain an SSL certificate using Apache
 sudo certbot run --apache \

@@ -9,7 +9,7 @@ echo "🚀 Starting ACME.sh setup for automatic SSL certificate management..."
 
 # Check if running as root (recommended)
 if [[ $EUID -ne 0 ]]; then
-   echo "⚠️  This script should be run as root for best results"
+   echo "⚠  This script should be run as root for best results"
    echo "   Continue anyway? (y/N)"
    read -r response
    if [[ ! "$response" =~ ^[Yy]$ ]]; then
@@ -31,7 +31,7 @@ else
     echo "🌐 Domain: $DOMAIN"
 fi
 echo "📁 Webroot: $WEBROOT"
-echo "🖥️  Webserver: $WEBSERVER"
+echo "🖥  Webserver: $WEBSERVER"
 
 # Install required packages
 echo "📦 Installing dependencies..."
@@ -50,7 +50,7 @@ elif command -v pacman >/dev/null; then
 fi
 
 # Download and install acme.sh
-echo "⬇️  Downloading acme.sh..."
+echo "⬇  Downloading acme.sh..."
 cd /tmp
 git clone https://github.com/acmesh-official/acme.sh.git
 cd acme.sh
@@ -151,9 +151,9 @@ echo ""
 echo "🔧 Useful commands:"
 echo "   📋 List certificates: acme.sh --list"
 echo "   🔄 Force renewal: acme.sh --renew -d $DOMAIN --force"
-echo "   ℹ️  Show info: acme.sh --info -d $DOMAIN"
+echo "   ℹ  Show info: acme.sh --info -d $DOMAIN"
 echo ""
-echo "⚠️  IMPORTANT: Update your webserver config to use the certificate paths shown above!"
+echo "⚠  IMPORTANT: Update your webserver config to use the certificate paths shown above!"
 
 # Clean up
 cd /

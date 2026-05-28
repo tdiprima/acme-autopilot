@@ -22,10 +22,10 @@ fi
 
 read -rp "💌 Enter email address: " EMAIL
 read -rp "🌐 Enter domain name (e.g. server.example.com): " DOMAIN
-read -rp "🗝️ Enter your EAB Key ID: " EAB_KID
+read -rp "🗝 Enter your EAB Key ID: " EAB_KID
 read -rp "🔑 Enter your EAB HMAC Key: " EAB_HMAC
 
-echo "⚙️ Installing dependencies..."
+echo "⚙ Installing dependencies..."
 if [ "$OS" = "redhat" ]; then
     # Install EPEL repository for Certbot
     sudo yum install -y epel-release

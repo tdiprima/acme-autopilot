@@ -11,7 +11,7 @@ echo "🔍 Debugging ACME certificate issue for $DOMAIN"
 echo
 
 # Check if domain resolves to this server
-echo "1️⃣ Checking DNS resolution..."
+echo "1⃣ Checking DNS resolution..."
 # TODO: This is wrong - prints name and IP:
 DOMAIN_IP=$(dig +short $DOMAIN)
 SERVER_IP=$(curl -s ifconfig.me || curl -s ipinfo.io/ip)
@@ -28,7 +28,7 @@ fi
 echo
 
 # Check web server is running and accessible
-echo "2️⃣ Checking web server..."
+echo "2⃣ Checking web server..."
 if systemctl is-active --quiet apache2; then
     echo "   ✅ Apache2 is running"
     WEBSERVER="apache2"
@@ -45,7 +45,7 @@ fi
 echo
 
 # Check port 80 accessibility
-echo "3️⃣ Checking port 80 accessibility..."
+echo "3⃣ Checking port 80 accessibility..."
 if netstat -tlnp | grep -q ":80 "; then
     echo "   ✅ Something is listening on port 80"
     
@@ -63,7 +63,7 @@ fi
 echo
 
 # Check webroot directory
-echo "4️⃣ Checking webroot directory..."
+echo "4⃣ Checking webroot directory..."
 if [ -d "$WEBROOT" ]; then
     echo "   ✅ Webroot $WEBROOT exists"
     
@@ -93,7 +93,7 @@ fi
 echo
 
 # Check firewall
-echo "5️⃣ Checking firewall..."
+echo "5⃣ Checking firewall..."
 if command -v ufw >/dev/null; then
     UFW_STATUS=$(ufw status | grep "Status:")
     echo "   UFW Status: $UFW_STATUS"
@@ -109,13 +109,13 @@ if command -v iptables >/dev/null; then
     if iptables -L INPUT | grep -q "ACCEPT.*tcp.*80"; then
         echo "   ✅ Port 80 allowed in iptables"
     else
-        echo "   ⚠️  Port 80 rules unclear in iptables"
+        echo "   ⚠  Port 80 rules unclear in iptables"
     fi
 fi
 echo
 
 # Show recent acme.sh logs
-echo "6️⃣ Recent ACME logs..."
+echo "6⃣ Recent ACME logs..."
 if [ -f ~/.acme.sh/acme.sh.log ]; then
     echo "   📋 Last 20 lines of ACME log:"
     tail -20 ~/.acme.sh/acme.sh.log | sed 's/^/   /'

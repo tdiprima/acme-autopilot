@@ -34,7 +34,7 @@ for conf in $(grep -lR "SSLCertificateFile" "$APACHE_DIR"); do
     if [ -f "$CERTFILE" ]; then
         openssl x509 -in "$CERTFILE" -noout -subject -issuer -dates | sed 's/^/    /'
     else
-        echo "    ⚠️  Cert file missing or not readable"
+        echo "    ⚠  Cert file missing or not readable"
     fi
     echo "------------------------------------------------------------"
 done

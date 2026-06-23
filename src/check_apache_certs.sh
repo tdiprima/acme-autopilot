@@ -67,12 +67,12 @@ for conf in $(grep -lR "SSLCertificateFile" "$APACHE_DIR"); do
         fi
 
         # Check the key is valid (not corrupt / wrong format)
-        if ! openssl rsa -in "$KEYFILE" -check -noout 2>/dev/null; then
-            echo "    ❌ Key file failed openssl rsa -check (corrupt or wrong format?)"
+        if ! openssl ec -in "$KEYFILE" -check -noout 2>/dev/null; then
+            echo "    ❌ Key file failed openssl ec -check (corrupt or wrong format?)"
         else
             # Compare modulus of cert and key — must match for Apache to work
             CERT_MOD=$(openssl x509 -in "$CERTFILE" -noout -modulus 2>/dev/null | md5sum)
-            KEY_MOD=$(openssl rsa  -in "$KEYFILE"  -noout -modulus 2>/dev/null | md5sum)
+            KEY_MOD=$(openssl ec  -in "$KEYFILE"  -noout -modulus 2>/dev/null | md5sum)
             if [ "$CERT_MOD" = "$KEY_MOD" ]; then
                 echo "    ✅ Key matches certificate — OK"
             else

@@ -7,7 +7,7 @@
 sudo certbot run --apache \
   --agree-tos \
   --email you@example.com \
-  --server https://acme.sectigo.com/v2/InCommonRSAOV \
+  --server https://acme-us.certinext.io/v1/directory \
   --eab-kid <your-key-id> \
   --eab-hmac-key <your-hmac-key> \
   -d yourserver.example.com

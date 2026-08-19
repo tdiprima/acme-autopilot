@@ -47,7 +47,7 @@ sudo certbot certonly \
     --non-interactive \
     --agree-tos \
     --email "$EMAIL" \
-    --server https://acme.sectigo.com/v2/InCommonRSAOV \
+    --server https://acme-us.certinext.io/v1/directory \
     --eab-kid "$EAB_KID" \
     --eab-hmac-key "$EAB_HMAC" \
     --domain "$DOMAIN" \
